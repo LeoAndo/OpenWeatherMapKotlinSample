@@ -1,22 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text_home"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.openweathermapkotlinsample.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
+
+        <!-- 今の天気エリア. -->
+        <RelativeLayout
+            android:id="@+id/today_weather_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_today_weather_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今の天気"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_ward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_today_weather_title"
+                android:layout_marginTop="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="中央区" />
+
+            <TextView
+                android:id="@+id/text_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_ward"
+                android:text="@{viewModel.todayWeatherTemp}"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                tools:text="30℃" />
+
+            <TextView
+                android:id="@+id/text_max_tmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_temperature"
+                android:textColor="#F09A37"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:formatDegreeCelsius="@{viewModel.todayWeatherTempMax}"
+                tools:text="34℃" />
+
+            <TextView
+                android:id="@+id/text_min_tmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_temperature"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/text_max_tmp"
+                android:textColor="#59A7D7"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:formatDegreeCelsius="@{viewModel.todayWeatherTempMin}"
+                tools:text="23℃" />
+
+            <ImageView
+                android:id="@+id/image_weather"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@null"
+                android:scaleType="fitCenter"
+                app:weatherIcon="@{viewModel.todayWeatherDescription}"
+                tools:src="@drawable/ic_weather_clear_sky" />
+        </RelativeLayout>
+
+        <!-- 天気情報エリア. -->
+        <RelativeLayout
+            android:id="@+id/weather_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/today_weather_area">
+
+            <TextView
+                android:id="@+id/text_weather_week_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="週間天気"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_weather_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:textColor="#8A8A8D"
+                android:textSize="14sp"
+                tools:text="中央区" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_weather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_weather_week_title"
+                android:layout_marginTop="20dp"
+                tools:itemCount="3" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

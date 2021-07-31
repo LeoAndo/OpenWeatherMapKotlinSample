@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="format_temp">%d°</string>
+    <string name="format_degree_celsius">%d℃</string>
+    <string name="format_percentage">%d%%</string>
 </resources>

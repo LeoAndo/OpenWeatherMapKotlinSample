@@ -5,6 +5,7 @@ import java.util.*
 import javax.inject.Inject
 
 const val WEEKLY_ITEM_COUNT = 7
+
 interface WeatherUseCase {
     // 今日の天気を取得する
     suspend fun getWeatherInfo(latitude: String, longitude: String): WeatherModel
@@ -71,8 +72,8 @@ class WeatherUseCaseImpl @Inject constructor(private val weatherRepository: Weat
         val hourly = result.hourly
         val models = arrayListOf<WeatherModel>()
         hourly.map { data ->
-            val day = Date(data.dt * 1000)
-            val weather = data.weather[0].weather[0]
+            val day = Date(data.dt * 1000L)
+            val weather = data.weather[0]
             val temp = data.temp
             val iconUrl = "https://openweathermap.org/img/w/" + weather.icon + ".png"
             val descJp = WeatherUtils.getTranslation(weather.description)

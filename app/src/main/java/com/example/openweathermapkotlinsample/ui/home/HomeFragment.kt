@@ -19,6 +19,7 @@ import com.example.openweathermapkotlinsample.domain.WEEKLY_ITEM_COUNT
 import com.example.openweathermapkotlinsample.domain.exception.UnAuthorizedException
 import com.example.openweathermapkotlinsample.location.AppLocationService
 import com.example.openweathermapkotlinsample.ui.HomeWeatherItem
+import com.example.openweathermapkotlinsample.ui.TodayWeatherItem
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private val weatherAdapter = GroupAdapter<GroupieViewHolder>()
+    private val weekWeatherAdapter = GroupAdapter<GroupieViewHolder>()
+    private val hourlyWeatherAdapter = GroupAdapter<GroupieViewHolder>()
 
     @Inject
     lateinit var appLocationService: AppLocationService
@@ -49,6 +51,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.bind(view).apply {
             this.viewModel = homeViewModel
             setupWeather(this.listWeather)
+            setupHourlyWeatherAdapter(this.listTodayWeather)
         }
         observeLiveData()
         permissionChecker.launch(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -56,7 +59,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun observeLiveData() {
         homeViewModel.weatherModels.observe(viewLifecycleOwner, { weatherModels ->
-            weatherAdapter.update(weatherModels.map { weatherModel -> HomeWeatherItem(weatherModel) })
+            weekWeatherAdapter.update(weatherModels.map { weatherModel ->
+                HomeWeatherItem(
+                    weatherModel
+                )
+            })
+        })
+        homeViewModel.hourlyWeatherModels.observe(viewLifecycleOwner, Observer { weatherModels ->
+            hourlyWeatherAdapter.update(weatherModels.map { model -> TodayWeatherItem(model) })
         })
         appLocationService.locationResult.observe(viewLifecycleOwner, {
             viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
@@ -75,13 +85,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupWeather(listWeather: RecyclerView) {
-        weatherAdapter.apply {
+        weekWeatherAdapter.apply {
             setOnItemClickListener { item, view ->
                 // findNavController().navigate(HomeFragmentDirections.openXXXAction())
             }
         }
-        listWeather.also {
-            it.adapter = weatherAdapter
+        listWeather.apply {
+            this.adapter = weekWeatherAdapter
             val linearLayoutManager = object : GridLayoutManager(
                 context, WEEKLY_ITEM_COUNT, LinearLayoutManager.VERTICAL, false
             ) {
@@ -89,7 +99,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 override fun canScrollVertically(): Boolean = false
                 override fun canScrollHorizontally(): Boolean = false
             }
-            it.layoutManager = linearLayoutManager
+            this.layoutManager = linearLayoutManager
+        }
+    }
+
+    private fun setupHourlyWeatherAdapter(listWeather: RecyclerView) {
+        listWeather.apply {
+            this.adapter = hourlyWeatherAdapter
+            this.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
     }
 

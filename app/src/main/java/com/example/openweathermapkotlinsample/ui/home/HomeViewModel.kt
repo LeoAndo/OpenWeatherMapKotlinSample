@@ -22,13 +22,17 @@ class HomeViewModel @Inject constructor(
     val todayWeatherDescription = ObservableField<String>()
     private val _weatherModels = MutableLiveData<List<WeatherModel>>()
     val weatherModels: LiveData<List<WeatherModel>> = _weatherModels
+    private val _hourlyWeatherModels = MutableLiveData<List<WeatherModel>>()
+    val hourlyWeatherModels: LiveData<List<WeatherModel>> = _hourlyWeatherModels
 
     suspend fun fetchWeatherInfo() {
         appLocationService.locationResult.value?.let {
+            // 同期処理だと時間かかるので、並列処理でWebAPIを呼び出す
             withContext(Dispatchers.IO) {
                 val deferred = listOf(
                     async { getWeeklyWeatherInfo(it.latitude, it.longitude) },
-                    async { getWeatherInfo(it.latitude, it.longitude) }
+                    async { getWeatherInfo(it.latitude, it.longitude) },
+                    async { getHourlyWeather(it.latitude, it.longitude) }
                 )
                 deferred.awaitAll()
             }
@@ -41,7 +45,7 @@ class HomeViewModel @Inject constructor(
             latitude = latitude.toString(),
             longitude = longitude.toString()
         )
-        withContext(Dispatchers.Main) { _weatherModels.value = models }
+        _weatherModels.postValue(models)
     }
 
     // 今日の天気情報を取得する
@@ -56,5 +60,11 @@ class HomeViewModel @Inject constructor(
             todayWeatherTempMin.set(weatherInfo.tempMin)
             todayWeatherDescription.set(weatherInfo.description)
         }
+    }
+
+    // 1時間毎の天気を取得する
+    private suspend fun getHourlyWeather(latitude: Double, longitude: Double) {
+        val models = usecase.getHourlyWeather(latitude.toString(), longitude.toString())
+        _hourlyWeatherModels.postValue(models)
     }
 }

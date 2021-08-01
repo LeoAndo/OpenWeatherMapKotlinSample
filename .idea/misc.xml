@@ -12,8 +12,11 @@
         <entry key="app/src/main/res/drawable/ic_weather_umbrella.xml" value="0.19774774774774775" />
         <entry key="app/src/main/res/drawable/shape_sp_rectangle_frame_home.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21952595936794583" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/item_home_weather.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/item_home_weather.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_today_weather.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/view_progress_indicator.xml" value="0.20878623188405798" />
       </map>
     </option>

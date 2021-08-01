@@ -2,6 +2,7 @@
 
 OpenWeatherMap APIを使ったサンプルアプリです<br>
 このアプリを使って開発する場合は、以下のキャプチャの通り、local.propertiesを設定追加してください<br>
+**API KEYを秘匿情報として管理しているため。**<br>
 <img width="1109" alt="スクリーンショット 2021-08-01 20 29 55" src="https://user-images.githubusercontent.com/16476224/127769264-c2a37897-f2c0-4ef8-b720-f15499ca1002.png">
 
 

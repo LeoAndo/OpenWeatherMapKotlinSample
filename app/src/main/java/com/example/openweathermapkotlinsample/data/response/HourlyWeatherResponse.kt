@@ -1,26 +1,36 @@
 package com.example.openweathermapkotlinsample.data.response
 
-import com.squareup.moshi.Json
+import java.io.Serializable
 
+// generate by JsonToKotlinClass plugin
 data class HourlyWeatherResponse(
+    val hourly: List<Hourly>,
     val lat: Double,
     val lon: Double,
     val timezone: String,
-    @Json(name = "timezone_offset") val timezoneOffset: Long,
-    val hourly: List<HourlyInfo>
-) {
-    data class HourlyInfo(
-        val dt: Long,
+    val timezone_offset: Int
+): Serializable {
+    data class Hourly(
+        val clouds: Int,
+        val dew_point: Double,
+        val dt: Int,
+        val feels_like: Double,
+        val humidity: Int,
+        val pop: Int,
+        val pressure: Int,
         val temp: Double,
-        @Json(name = "feels_like") val feelsLike: Double,
-        val pressure: Long,
-        val humidity: Long,
-        @Json(name = "dew_point") val dewPoint: Double,
-        val clouds: Long,
-        val visibility: Long,
-        @Json(name = "wind_speed") val windSpeed: Double,
-        @Json(name = "wind_deg") val windDeg: Long,
-        val weather: List<WeeklyWeatherResponse.Daily>,
-        val pop: Double
+        val uvi: Double,
+        val visibility: Int,
+        val weather: List<Weather>,
+        val wind_deg: Int,
+        val wind_gust: Double,
+        val wind_speed: Double
+    )
+
+    data class Weather(
+        val description: String,
+        val icon: String,
+        val id: Int,
+        val main: String
     )
 }

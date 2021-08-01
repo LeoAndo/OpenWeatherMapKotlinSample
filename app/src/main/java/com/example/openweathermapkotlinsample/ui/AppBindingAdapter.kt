@@ -3,6 +3,7 @@ package com.example.openweathermapkotlinsample
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.openweathermapkotlinsample.domain.WeatherUtils
 
 @BindingAdapter("formatTemp")
 fun TextView.setFormatTemp(temp: Int) {

@@ -48,7 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun setupWeather(listWeather: RecyclerView) {
         weatherAdapter.apply {
             setOnItemClickListener { item, view ->
-                // findNavController().navigate(HomeFragmentDirections.openWeatherDetailFragmentAction())
+                // findNavController().navigate(HomeFragmentDirections.openXXXAction())
             }
         }
         listWeather.also {

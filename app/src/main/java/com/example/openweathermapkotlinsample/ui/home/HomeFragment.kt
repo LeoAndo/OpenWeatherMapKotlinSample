@@ -99,11 +99,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun <T> doAction(action: suspend () -> T) {
         viewLifecycleOwner.lifecycleScope.launch(coroutineExceptionHandler) {
-            // TODO プログレスバーの表示処理を行う  - START
-            // binding.progressIndicatorLayout.show()
+            binding.progressIndicatorLayout.show() // プログレス表示
             action.invoke()
-            // binding.progressIndicatorLayout.hide()
-            // TODO プログレスバーの表示処理を行う  - END
+            binding.progressIndicatorLayout.hide() // プログレス非表示
         }
     }
 

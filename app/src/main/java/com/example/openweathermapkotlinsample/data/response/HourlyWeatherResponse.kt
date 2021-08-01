@@ -2,6 +2,7 @@ package com.example.openweathermapkotlinsample.data.response
 
 import java.io.Serializable
 
+// generate by JsonToKotlinClass plugin
 data class HourlyWeatherResponse(
     val hourly: List<Hourly>,
     val lat: Double,

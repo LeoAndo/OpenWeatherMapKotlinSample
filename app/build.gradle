@@ -83,7 +83,7 @@ dependencies {
     implementation "androidx.hilt:hilt-common:1.0.0-alpha03"
 
     // Use FusedLocationProviderClient
-//    implementation "com.google.android.gms:play-services-location:17.1.0"
+    implementation "com.google.android.gms:play-services-location:17.1.0"
 }
 
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

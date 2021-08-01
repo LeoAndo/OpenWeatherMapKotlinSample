@@ -3,8 +3,6 @@ package com.example.openweathermapkotlinsample.data
 import com.example.openweathermapkotlinsample.data.response.HourlyWeatherResponse
 import com.example.openweathermapkotlinsample.data.response.WeatherResponse
 import com.example.openweathermapkotlinsample.data.response.WeeklyWeatherResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface WeatherRepository {
@@ -22,17 +20,20 @@ class WeatherRepositoryImpl @Inject constructor(private val api: OpenWeatherMapS
     WeatherRepository {
 
     override suspend fun loadWeatherInfo(latitude: String, longitude: String): WeatherResponse {
-        return withContext(Dispatchers.IO) { api.loadWeatherInfo(latitude, longitude) }
+        return apiCall { api.loadWeatherInfo(latitude, longitude) }
     }
 
     override suspend fun loadWeeklyWeatherInfo(
         latitude: String,
         longitude: String
     ): WeeklyWeatherResponse {
-        return withContext(Dispatchers.IO) { api.loadWeeklyWeatherInfo(latitude, longitude) }
+        return apiCall { api.loadWeeklyWeatherInfo(latitude, longitude) }
     }
 
-    override suspend fun loadHourlyWeather(latitude: String, longitude: String): HourlyWeatherResponse {
-        return withContext(Dispatchers.IO) { api.loadHourlyWeather(latitude, longitude) }
+    override suspend fun loadHourlyWeather(
+        latitude: String,
+        longitude: String
+    ): HourlyWeatherResponse {
+        return apiCall { api.loadHourlyWeather(latitude, longitude) }
     }
 }

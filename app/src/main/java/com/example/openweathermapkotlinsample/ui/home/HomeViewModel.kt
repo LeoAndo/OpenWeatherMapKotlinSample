@@ -4,17 +4,17 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.openweathermapkotlinsample.domain.WeatherModel
 import com.example.openweathermapkotlinsample.domain.WeatherUseCase
-import com.example.openweathermapkotlinsample.service.LocationData
+import com.example.openweathermapkotlinsample.location.AppLocationService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val usecase: WeatherUseCase
+    private val usecase: WeatherUseCase,
+    private val appLocationService: AppLocationService
 ) : ViewModel() {
     val todayWeatherTemp = ObservableField<String>()
     val todayWeatherTempMax = ObservableField<Int>()
@@ -22,18 +22,9 @@ class HomeViewModel @Inject constructor(
     val todayWeatherDescription = ObservableField<String>()
     private val _weatherModels = MutableLiveData<List<WeatherModel>>()
     val weatherModels: LiveData<List<WeatherModel>> = _weatherModels
-    private var locationData: LocationData? = null
 
-    init {
-        val dummyData = LocationData(35.6809591, 139.7673068)
-        viewModelScope.launch {
-            fetchWeatherInfo(dummyData)
-        }
-    }
-    private suspend fun fetchWeatherInfo(locationData: LocationData?) {
-        this.locationData = locationData
-        this.locationData?.let {
-            // TODO プログレスバーの表示処理を行う  - START
+    suspend fun fetchWeatherInfo() {
+        appLocationService.locationResult.value?.let {
             withContext(Dispatchers.IO) {
                 val deferred = listOf(
                     async { getWeeklyWeatherInfo(it.latitude, it.longitude) },
@@ -41,7 +32,6 @@ class HomeViewModel @Inject constructor(
                 )
                 deferred.awaitAll()
             }
-            // TODO プログレスバーの表示処理を行う - END
         }
     }
 

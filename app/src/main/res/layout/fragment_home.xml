@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
-
         <!-- 今の天気エリア. -->
         <RelativeLayout
             android:id="@+id/today_weather_area"
@@ -125,5 +124,10 @@
                 android:layout_marginTop="20dp"
                 tools:itemCount="3" />
         </RelativeLayout>
+
+        <com.example.openweathermapkotlinsample.ui.widget.ProgressIndicatorLayout
+            android:id="@+id/progress_indicator_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,6 @@
 # アプリ概要
 
-OpenWeatherMap APIを使ったサンプルアプリです<br>
+このプロジェクトはOpenWeatherMap APIを使ったサンプルアプリです<br>
 このアプリを使って開発する場合は、以下のキャプチャの通り、local.propertiesを設定追加してください<br>
 **API KEYを秘匿情報として管理しているため。**<br>
 <img width="1109" alt="スクリーンショット 2021-08-01 20 29 55" src="https://user-images.githubusercontent.com/16476224/127769264-c2a37897-f2c0-4ef8-b720-f15499ca1002.png">
@@ -16,6 +16,8 @@ OpenWeatherMap APIを使ったサンプルアプリです<br>
 # 実装上の課題
 Web APIのレスポンス値の数が多いため、型が間違っている場合があリます。<br>
 Logcatを見ていくつか直しましたが、Doubleで来る可能性のあるデータを直しきれていない可能性があります。<br>
+[PR](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/pull/7#issue-700855530)にもコメントしていますが、Andorid Studioの「JsonToKotlinClass」プラグインを使って
+generateしたやつをそのまま使ってるだけです。<br>
 以下、レスポンスを受けるデータクラスです<br>
 https://github.com/LeoAndo/OpenWeatherMapKotlinSample/tree/main/app/src/main/java/com/example/openweathermapkotlinsample/data/response
 

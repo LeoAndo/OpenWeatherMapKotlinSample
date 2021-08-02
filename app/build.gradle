@@ -24,10 +24,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        if (!localProperties['base64EncodedPublicKey']) {
-            logger.warn('base64EncodedPublicKey must be set for signature verification. ' +
-                    'You can add it to local.properties once you have gotten it from Play. ' +
-                    'Example: base64EncodedPublicKey=[key value]')
+        if (!localProperties['weatherApiKey']) {
+            logger.warn('You can add it to local.properties once you have gotten it from Play. ' +
+                    'Example: weatherApiKey=[key value]')
         }
         buildConfigField("String", "WEATHER_API_KEY", "\"" + localProperties['weatherApiKey'] + "\"")
         buildConfigField "String", "WEATHER_API_DOMAIN", "\"https://api.openweathermap.org/\""

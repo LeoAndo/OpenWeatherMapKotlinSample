@@ -11,7 +11,7 @@ When developing using this app, please add the following settings to `local.prop
 
 # capture (Pixcel 5 OS:11)
 
-<img src="https://user-images.githubusercontent.com/16476224/127769176-89c53820-b538-490d-93ce-11e9cb81b039.gif" width=320 />
+<img src="https://user-images.githubusercontent.com/16476224/128594631-fa886469-fc67-4344-ae3b-a23f4a9f6eb8.gif" width=320 />
 
 # problem of implemantaion 
 Due to the large number of Web API response values, the type may be incorrect.<br>

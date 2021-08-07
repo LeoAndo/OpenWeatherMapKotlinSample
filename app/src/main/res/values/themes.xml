@@ -18,6 +18,6 @@
         <item name="android:indeterminate">true</item>
         <item name="indicatorColor">@array/progress_colors</item>
         <item name="indeterminateAnimationType">contiguous</item>
-        <item name="indicatorSize">80dp</item>
+        <item name="indicatorSize">32dp</item>
     </style>
 </resources>

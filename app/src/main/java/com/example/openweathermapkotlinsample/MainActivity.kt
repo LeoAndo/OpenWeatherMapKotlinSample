@@ -1,5 +1,7 @@
 package com.example.openweathermapkotlinsample
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -33,5 +35,9 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    companion object {
+        fun startActivity(context: Context) = context.startActivity(Intent(context, MainActivity::class.java))
     }
 }

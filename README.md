@@ -1,3 +1,5 @@
+[日本語版README](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/blob/main/readme/README_JP.md)
+
 # Overview
 
 This is a OpenWeatherMap API Sample Application.<br>

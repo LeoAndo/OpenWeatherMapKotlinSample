@@ -23,7 +23,7 @@ I'm just using the `data class` that was` generated`.<br>
 Below is the data class that receives the response<br>
 https://github.com/LeoAndo/OpenWeatherMapKotlinSample/tree/main/app/src/main/java/com/example/openweathermapkotlinsample/data/response
 
-# implementaion flow
+# implementation flow
 
 Please proceed with the implementation according to the following procedure<br>
 [pull request](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/pulls?q=is%3Apr+is%3Aclosed)

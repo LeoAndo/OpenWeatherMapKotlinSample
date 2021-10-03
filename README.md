@@ -15,7 +15,7 @@ When developing using this app, please add the following settings to `local.prop
 
 <img src="https://user-images.githubusercontent.com/16476224/128594631-fa886469-fc67-4344-ae3b-a23f4a9f6eb8.gif" width=320 />
 
-# problem of implemantaion 
+# problem of implementation 
 Due to the large number of Web API response values, the type may be incorrect.<br>
 I looked at Logcat and fixed some things, but it is possible that I haven't fixed all the data that may come with Double.<br>
 [PR](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/pull/7#issue-700855530)Also commented, using Andorid Studio's "JsonToKotlinClass" plugin

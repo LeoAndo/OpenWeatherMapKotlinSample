@@ -4,12 +4,12 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.openweathermapkotlinsample.R
 import com.google.android.gms.location.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
@@ -83,7 +83,7 @@ class AppLocationServiceImpl @Inject constructor(@ApplicationContext val context
                                 )
                             }
 
-                            override fun onLocationAvailability(p0: LocationAvailability?) {
+                            override fun onLocationAvailability(p0: LocationAvailability) {
                                 super.onLocationAvailability(p0)
                                 // 位置情報OFFの時にここに入る
                                 Log.d(LOG_TAG, "onLocationAvailability")
@@ -95,7 +95,7 @@ class AppLocationServiceImpl @Inject constructor(@ApplicationContext val context
                                 _locationResult.value = null
                             }
                         },
-                        null
+                        Looper.getMainLooper()
                     )
             }
         }.addOnFailureListener {

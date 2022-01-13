@@ -1,3 +1,5 @@
+[日本語版README](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/blob/main/readme/README_JP.md)
+
 # Overview
 
 This is a OpenWeatherMap API Sample Application.<br>
@@ -13,7 +15,7 @@ When developing using this app, please add the following settings to `local.prop
 
 <img src="https://user-images.githubusercontent.com/16476224/128594631-fa886469-fc67-4344-ae3b-a23f4a9f6eb8.gif" width=320 />
 
-# problem of implemantaion 
+# problem of implementation 
 Due to the large number of Web API response values, the type may be incorrect.<br>
 I looked at Logcat and fixed some things, but it is possible that I haven't fixed all the data that may come with Double.<br>
 [PR](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/pull/7#issue-700855530)Also commented, using Andorid Studio's "JsonToKotlinClass" plugin
@@ -21,7 +23,7 @@ I'm just using the `data class` that was` generated`.<br>
 Below is the data class that receives the response<br>
 https://github.com/LeoAndo/OpenWeatherMapKotlinSample/tree/main/app/src/main/java/com/example/openweathermapkotlinsample/data/response
 
-# implementaion flow
+# implementation flow
 
 Please proceed with the implementation according to the following procedure<br>
 [pull request](https://github.com/LeoAndo/OpenWeatherMapKotlinSample/pulls?q=is%3Apr+is%3Aclosed)

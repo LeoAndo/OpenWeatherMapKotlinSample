@@ -11,9 +11,9 @@ When developing using this app, please add the following settings to `local.prop
 # development environment
 <img width="686" alt="127751156-0638bd97-e532-43e9-be12-e758a7118141" src="https://user-images.githubusercontent.com/16476224/127752570-e46e0931-4d36-43c9-9441-903011660580.png">
 
-# capture (Pixcel 5 OS:11)
+# capture (Pixcel 5 OS:12)
 
-<img src="https://user-images.githubusercontent.com/16476224/128594631-fa886469-fc67-4344-ae3b-a23f4a9f6eb8.gif" width=320 />
+<img src="https://user-images.githubusercontent.com/16476224/149372012-2f5c832f-a587-40e9-9b47-85f5328f10b2.gif" width=320 />
 
 # problem of implementation 
 Due to the large number of Web API response values, the type may be incorrect.<br>
